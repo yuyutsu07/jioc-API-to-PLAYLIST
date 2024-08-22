@@ -1,0 +1,38 @@
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request))
+})
+
+async function handleRequest(request) {
+  const jsonUrl = 'https://denver1769.shodns.in/jc/JC.json';
+
+  try {
+    const response = await fetch(jsonUrl);
+    const jsonData = await response.json();
+
+    if (!jsonData || !jsonData.length) {
+      return new Response('No data found', { status: 404 });
+    }
+
+    const playlistData = convertToM3U(jsonData);
+    return new Response(playlistData, {
+      headers: { 
+        'Content-Type': 'audio/x-mpegurl',
+        'Content-Disposition': 'attachment; filename="yutv.m3u"'
+      },
+    });
+  } catch (error) {
+    return new Response(`Error fetching data: ${error.message}`, { status: 500 });
+  }
+}
+
+function convertToM3U(jsonData) {
+  const channels = jsonData[0].channels;
+  let m3uContent = '#EXTM3U\n';
+
+  channels.forEach(channel => {
+    m3uContent += `#EXTINF:-1 tvg-id="${channel.channel_id}" tvg-logo="${channel.logo}" group-title="${channel.category}",${channel.name}\n`;
+    m3uContent += `${channel.link}\n`;
+  });
+
+  return m3uContent;
+}
