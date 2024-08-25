@@ -1,3 +1,5 @@
+# PROJECT STOPPED 🔴🛑 FOR SOMETIME
+
 # Cloudflare Worker M3U Playlist
 
 A Cloudflare Worker to serve an M3U playlist dynamically.
