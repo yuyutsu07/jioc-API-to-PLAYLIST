@@ -1,4 +1,4 @@
-# PROJECT STOPPED 🔴🛑 FOR SOMETIME
+# PROJECT WORKING 🟢
 
 # Cloudflare Worker M3U Playlist
 
