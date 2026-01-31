@@ -3,7 +3,7 @@ addEventListener('fetch', event => {
 })
 
 async function handleRequest(request) {
-  const jsonUrl = 'https://play.denver1769.in/jc/JC.json';
+  const jsonUrl = 'https://mundazaini.xo.je/JHS.json';
 
   try {
     const response = await fetch(jsonUrl);
